@@ -1,339 +1,246 @@
+// ──────────────────────────────────────────────────────────────
+// src/pages/Testimonials.tsx
+// ──────────────────────────────────────────────────────────────
 import React, { useState } from 'react';
 import CallToAction from '../components/CallToAction';
+import { Star } from 'lucide-react';
 
+/* -------------------------------- Testimonial data -------------------------------- */
 const testimonials = [
   {
     id: 1,
-    name: 'Rajiv Mehta',
-    position: 'Business Owner',
-    company: 'Mehta Enterprises',
-    image: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600',
-    quote: 'The legal expertise provided by Aggarwal Legal Firm was exceptional. They helped my business navigate complex regulations with ease and professionalism. I highly recommend their services to anyone looking for reliable legal counsel.',
+    name: 'Riya Verma',
+    relation: 'Class 10 Student',
+    image: 'https://images.pexels.com/photos/4145193/pexels-photo-4145193.jpeg?auto=compress&cs=tinysrgb&w=600',
+    quote:
+      'EduConnect’s concept‑first approach made Physics and Maths so easy. I jumped from 67 % to 90 % in my boards!',
     rating: 5,
-    service: 'Corporate Law'
+    group: 'Class 9‑10',
   },
   {
     id: 2,
-    name: 'Priya Sharma',
-    position: 'Real Estate Developer',
-    company: 'Sharma Properties',
-    image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600',
-    quote: 'I was impressed by their attention to detail and dedication to my case. The team at Aggarwal Law Firm goes above and beyond for their clients. They helped me resolve a complex property dispute efficiently and favorably.',
+    name: 'Sanjay Kumar',
+    relation: 'Parent (Class 8)',
+    image: 'https://images.pexels.com/photos/936018/pexels-photo-936018.jpeg?auto=compress&cs=tinysrgb&w=600',
+    quote:
+      'My son looks forward to every class now. The weekly quizzes and progress reports keep us fully informed.',
     rating: 5,
-    service: 'Real Estate Law'
+    group: 'Class 6‑8',
   },
   {
     id: 3,
-    name: 'Amit Singh',
-    position: 'Corporate Executive',
-    company: 'Global Innovations',
-    image: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=600',
-    quote: 'The strategic legal advice I received helped me resolve a complex dispute efficiently. Their professionalism and expertise are unmatched. I particularly appreciated how they explained complex legal concepts in easy-to-understand terms.',
+    name: 'Megha Shah',
+    relation: 'Class 12 (Science)',
+    image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600',
+    quote:
+      'The doubt‑solving sessions and JEE pattern tests boosted my confidence. I secured 96 % in PCM!',
     rating: 5,
-    service: 'Civil Litigation'
+    group: 'Class 11‑12 Science',
   },
   {
     id: 4,
-    name: 'Neha Gupta',
-    position: 'Entrepreneur',
-    company: 'TechStart Solutions',
-    image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=600',
-    quote: 'Aggarwal Legal Firm provided exceptional guidance for my startup. Their expertise in intellectual property protection was invaluable as we launched our technology platform. They continue to be our trusted legal advisors.',
-    rating: 5,
-    service: 'Intellectual Property'
-  },
-  {
-    id: 5,
-    name: 'Vikram Malhotra',
-    position: 'CFO',
-    company: 'Pinnacle Industries',
-    image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600',
-    quote: 'Their tax law expertise saved our company significant resources during a complex audit. The team was responsive, knowledgeable, and strategic in their approach. We continue to rely on them for all our corporate legal matters.',
+    name: 'Anil Patel',
+    relation: 'Class 12 (Commerce)',
+    image: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600',
+    quote:
+      'Accounts finally makes sense thanks to clear explanations and real‑life examples. Highly recommended.',
     rating: 4,
-    service: 'Tax Law'
+    group: 'Class 11‑12 Commerce',
   },
-  {
-    id: 6,
-    name: 'Ananya Patel',
-    position: 'Medical Professional',
-    company: 'City Hospital',
-    image: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=600',
-    quote: 'During a difficult divorce, the compassionate team at Aggarwal Law Firm provided not just legal expertise but emotional support. They fought for my rights while keeping my children\'s wellbeing at the forefront.',
-    rating: 5,
-    service: 'Family Law'
-  }
 ];
 
-const Testimonials = () => {
+const Testimonials: React.FC = () => {
+  /* -------------- simple filter -------------- */
   const [filter, setFilter] = useState('All');
-  
-  const filteredTestimonials = filter === 'All' 
-    ? testimonials 
-    : testimonials.filter(t => t.service === filter);
-  
-  const services = ['All', ...new Set(testimonials.map(t => t.service))];
+  const groups = ['All', ...new Set(testimonials.map((t) => t.group))];
+  const shown = filter === 'All' ? testimonials : testimonials.filter((t) => t.group === filter);
 
   return (
-    <div>
-      <section className="pt-32 pb-16 bg-navy-900 relative">
-        <div className="absolute inset-0 bg-cover bg-center opacity-20" 
-          style={{ 
-            backgroundImage: "url('https://images.pexels.com/photos/8111301/pexels-photo-8111301.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')"
-          }}>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl flex flex-col justify-center items-center mx-auto">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
-              Client Testimonials
-            </h1>
-            
-            <p className="text-xl text-gray-300">
-              Hear what our clients have to say about their experience working with us.
-            </p>
-          </div>
-        </div>
-      </section>
-      
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-serif font-bold text-navy-900 mb-4">
-              What Our Clients Say
-            </h2>
-            <p className="text-gray-600">
-              At Aggarwal Legal Firm, client satisfaction is our top priority. Here's what some of our clients have to say about their experience working with our team.
-            </p>
-          </div>
-          <div className="max-w-5xl mx-auto text-center mb-12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-8">
-              {[
-                {
-                  icon: "Google Reviews",
-                  rating: "4.8/5",
-                  logo: "https://static.vecteezy.com/system/resources/previews/011/598/471/original/google-logo-icon-illustration-free-vector.jpg",
-                  link: "https://www.google.com/search?q=aggarwal+law+firm+reviews",
-                },
-                {
-                  icon: "Justdial",
-                  rating: "4.7/5",
-                  logo: "https://cdn.pnggallery.com/wp-content/uploads/justdial-jd-logo-04.png",
-                  link: "https://www.justdial.com/",
-                },
-                {
-                  icon: "Trustpilot",
-                  rating: "4.6/5",
-                  logo: "https://companieslogo.com/img/orig/TRST.L-5ada9c92.png?t=1663382464",
-                  link: "https://www.trustpilot.com/",
-                },{
-                  icon: "LawRato",
-                  rating: "4.0/5",
-                  logo: "https://play-lh.googleusercontent.com/FrfTAo5rpKvRgubrkpyEtkZeI8epH6IERDroFZIrlOre-gUqHmGUgL2zmAcL4eF-kB4",
-                  link: "https://lawrato.com/advocate-himanshu-aggarwal",
-                },
-              ].map((review, index) => (
-                <a
-                  key={index}
-                  href={review.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block bg-white shadow-md rounded-lg p-6 border-t-4 border-blue-500 hover:shadow-xl transition-shadow hover:scale-[1.]"
-                ><div className="flex items-center justify-center space-x-3">
-                  <img
-                    src={review.logo}
-                    alt={review.icon}
-                    className="h-10 w-[30px]"
-                  />
-                  {/* <h3 className="text-lg font-semibold text-navy-900 text-center">{review.icon}</h3> */}
-                  <p className="text-gray-600 text-[20px]">Rating: {review.rating}</p>
-                  </div>
-                </a>
-              ))}
-            </div>
-
-
-          </div>
-          
-          <div className="mb-10 flex justify-center flex-wrap gap-2">
-            {services.map((service) => (
-              <button
-                key={service}
-                onClick={() => setFilter(service)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  filter === service
-                    ? 'bg-blue-500 text-navy-900'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                {service}
-              </button>
-            ))}
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredTestimonials.map((testimonial) => (
-              <div 
-                key={testimonial.id} 
-                className="bg-white rounded-lg shadow-md hover:shadow-xl border border-gray-200 transition-shadow p-6"
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-14 h-14 rounded-full overflow-hidden mr-4">
-                    <img 
-                      src={testimonial.image} 
-                      alt={testimonial.name} 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-navy-900 font-bold">{testimonial.name}</h3>
-                    <p className="text-gray-600 text-sm">{testimonial.position}, {testimonial.company}</p>
-                  </div>
-                </div>
-                
-                <div className="mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <span 
-                      key={i} 
-                      className={`text-${i < testimonial.rating ? 'blue' : 'gray'}-500`}
-                    >
-                      ★
-                    </span>
-                  ))}
-                </div>
-                
-                <blockquote className="text-gray-700 mb-4 italic">
-                  "{testimonial.quote}"
-                </blockquote>
-                
-                <div className="text-sm text-gray-500">
-                  Service: <span className="text-blue-600">{testimonial.service}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+    <div className="font-mont">
+      {/* ───── Hero ───── */}
+      <section className="relative bg-[#2B526E] pt-32 pb-20 text-center text-white">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage:
+              "url('https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        <div className="relative z-10 max-w-3xl mx-auto px-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Student & Parent Stories</h1>
+          <p className="text-lg text-orange-100/90">
+            Real results. Real smiles. Hear how EduConnect is transforming learning.
+          </p>
         </div>
       </section>
-      
-      <section className="py-16 bg-gray-50">
+
+      {/* ───── Review widgets (Google etc.) ───── */}
+      <section className="bg-white py-12">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-serif font-bold text-navy-900 mb-4">
-              Our Success By The Numbers
-            </h2>
+          <div className="mx-auto mb-10 max-w-2xl text-center">
+            <h2 className="text-3xl font-bold text-[#2B526E] mb-3">We’re rated 4.8 ★ on Google</h2>
             <p className="text-gray-600">
-              Our track record speaks for itself with high client satisfaction rates and successful case outcomes.
+              Trusted by hundreds of families across the city.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto">
             {[
-              { label: 'Client Satisfaction', value: '98%' },
-              { label: 'Cases Won', value: '500+' },
-              { label: 'Years of Combined Experience', value: '75+' },
-              { label: 'Returning Clients', value: '85%' }
-            ].map((stat, index) => (
-              <div 
-                key={index} 
-                className="bg-white rounded-lg shadow-md p-8 text-center"
+              {
+                name: 'Google Reviews',
+                rating: '4.8/5',
+                logo: 'https://static.vecteezy.com/system/resources/previews/011/598/471/original/google-logo-icon-illustration-free-vector.jpg',
+                link: 'https://www.google.com/',
+              },
+              {
+                name: 'Justdial',
+                rating: '4.7/5',
+                logo: 'https://cdn.pnggallery.com/wp-content/uploads/justdial-jd-logo-04.png',
+                link: 'https://www.justdial.com/',
+              },
+              {
+                name: 'Facebook',
+                rating: '4.6/5',
+                logo: 'https://cdn-icons-png.flaticon.com/512/124/124010.png',
+                link: 'https://www.facebook.com/',
+              },
+              {
+                name: 'School Connect',
+                rating: '4.5/5',
+                logo: 'https://static-00.iconduck.com/assets.00/star-icon-1024x975-k41y4rod.png',
+                link: '#',
+              },
+            ].map((w, i) => (
+              <a
+                key={i}
+                href={w.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg border-t-4 border-[#EC9706] bg-white p-6 text-center shadow-md transition hover:shadow-lg"
               >
-                <div className="text-4xl font-bold text-blue-500 mb-2">{stat.value}</div>
-                <div className="text-navy-900 font-medium">{stat.label}</div>
-              </div>
+                <img src={w.logo} alt={w.name} className="mx-auto h-10 mb-4" />
+                <p className="text-[#2B526E] font-semibold">{w.rating}</p>
+              </a>
             ))}
           </div>
         </div>
       </section>
-      
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <div className="bg-navy-900 rounded-lg shadow-xl p-8">
-              <h2 className="text-2xl font-serif font-bold text-white mb-6 text-center">
-                Share Your Experience
-              </h2>
-              
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-2">
-                      Your Name
-                    </label>
-                    <input 
-                      type="text" 
-                      className="w-full px-4 py-2 rounded-md border border-gray-700 bg-navy-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="John Doe"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-2">
-                      Email
-                    </label>
-                    <input 
-                      type="email" 
-                      className="w-full px-4 py-2 rounded-md border border-gray-700 bg-navy-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-                </div>
-                
+
+      {/* ───── Filter buttons ───── */}
+      <section className="py-6 bg-gray-50">
+        <div className="flex flex-wrap justify-center gap-2">
+          {groups.map((g) => (
+            <button
+              key={g}
+              onClick={() => setFilter(g)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                filter === g
+                  ? 'bg-[#EC9706] text-white'
+                  : 'bg-white text-[#2B526E] border border-[#2B526E]/30 hover:bg-[#EC9706]/10'
+              }`}
+            >
+              {g}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* ───── Testimonials grid ───── */}
+      <section className="bg-white py-12">
+        <div className="container mx-auto px-4 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {shown.map((t) => (
+            <article
+              key={t.id}
+              className="rounded-xl border border-gray-200 p-6 shadow-sm transition hover:shadow-lg"
+            >
+              {/* avatar */}
+              <div className="flex items-center mb-4">
+                <img
+                  src={t.image}
+                  alt={t.name}
+                  className="h-14 w-14 rounded-full object-cover mr-3"
+                />
                 <div>
-                  <label className="block text-gray-300 text-sm font-medium mb-2">
-                    Service Used
-                  </label>
-                  <select 
-                    className="w-full px-4 py-2 rounded-md border border-gray-700 bg-navy-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <option value="">Select a service</option>
-                    {services.filter(s => s !== 'All').map((service) => (
-                      <option key={service} value={service}>{service}</option>
-                    ))}
-                  </select>
+                  <h3 className="font-semibold text-[#2B526E]">{t.name}</h3>
+                  <p className="text-sm text-gray-500">{t.relation}</p>
                 </div>
-                
-                <div>
-                  <label className="block text-gray-300 text-sm font-medium mb-2">
-                    Your Testimonial
-                  </label>
-                  <textarea 
-                    rows={4} 
-                    className="w-full px-4 py-2 rounded-md border border-gray-700 bg-navy-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Share your experience working with us..."
-                  ></textarea>
-                </div>
-                
-                <div>
-                  <label className="block text-gray-300 text-sm font-medium mb-2">
-                    Rating
-                  </label>
-                  <div className="flex gap-2">
-                    {[1, 2, 3, 4, 5].map((rating) => (
-                      <button
-                        key={rating}
-                        type="button"
-                        className="text-2xl text-gray-400 hover:text-blue-500 focus:text-blue-500"
-                      >
-                        ★
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                
-                <div>
-                  <button 
-                    type="submit" 
-                    className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-navy-900 font-medium rounded-md transition-colors w-full"
-                  >
-                    Submit Testimonial
-                  </button>
-                </div>
-              </form>
+              </div>
+
+              {/* rating */}
+              <div className="flex mb-3">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    size={18}
+                    className={i < t.rating ? 'text-[#EC9706]' : 'text-gray-300'}
+                    fill={i < t.rating ? '#EC9706' : 'none'}
+                  />
+                ))}
+              </div>
+
+              {/* quote */}
+              <blockquote className="italic text-gray-700 mb-4">“{t.quote}”</blockquote>
+
+              <span className="text-xs font-medium text-[#EC9706]">{t.group}</span>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* ───── Success metrics ───── */}
+      <section className="bg-gray-50 py-12">
+        <div className="container mx-auto px-4 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { label: 'Average Score Improvement', value: '23 %' },
+            { label: 'Students Graded A1‑A2', value: '350+' },
+            { label: 'Years of Teaching', value: '15+' },
+            { label: 'Demo Class Satisfaction', value: '98 %' },
+          ].map((s, i) => (
+            <div key={i} className="rounded-lg bg-white p-8 text-center shadow">
+              <p className="text-4xl font-bold text-[#EC9706] mb-1">{s.value}</p>
+              <p className="text-[#2B526E] text-sm font-medium">{s.label}</p>
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ───── Share your experience ───── */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="rounded-2xl bg-[#2B526E] p-8 shadow-lg">
+            <h2 className="text-center text-2xl font-bold text-white mb-6">
+              Share Your Experience
+            </h2>
+            <form className="space-y-6">
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="w-full rounded-md border border-white/30 bg-white/10 px-4 py-2 text-sm text-white placeholder-gray-300 focus:outline-none"
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                className="w-full rounded-md border border-white/30 bg-white/10 px-4 py-2 text-sm text-white placeholder-gray-300 focus:outline-none"
+              />
+              <textarea
+                rows={4}
+                placeholder="Your Testimonial"
+                className="w-full rounded-md border border-white/30 bg-white/10 px-4 py-2 text-sm text-white placeholder-gray-300 focus:outline-none"
+              />
+              <button
+                type="submit"
+                className="block w-full rounded-md bg-[#EC9706] py-2 text-center text-sm font-semibold text-white transition hover:brightness-110"
+              >
+                Submit
+              </button>
+            </form>
           </div>
         </div>
       </section>
-      
+
+      {/* ───── CTA banner ───── */}
       <CallToAction />
     </div>
   );

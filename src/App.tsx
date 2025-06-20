@@ -16,7 +16,7 @@ import Gallery       from './pages/Gallery';
 import FAQs          from './pages/FAQs';
 import Contact       from './pages/Contact';
 import Enroll        from './pages/Enroll';
-// import Success       from './pages/Success';     // ✔️ confirmation page (create if not yet)
+import Success       from './pages/Success';     // ✔️ confirmation page (create if not yet)
 
 /* ------------------------------------------------------------------------------------------------ */
 
@@ -52,7 +52,7 @@ const App: React.FC = () => {
           <Route path="faqs"         element={<FAQs />} />
           <Route path="contact"      element={<Contact />} />
           <Route path="enroll"       element={<Enroll />} />
-          {/* <Route path="success"      element={<Success />} /> */}
+          <Route path="success"      element={<Success />} />
 
           {/* 404 fallback (optional – redirect to Home) */}
           <Route path="*" element={<Home />} />
