@@ -5,58 +5,80 @@ import { IoLogoWhatsapp } from 'react-icons/io5';
 
 function Navbar({ scrolled }) {
   const [isOpen, setIsOpen] = useState(false);
-  const navItems = ['Home', 'About', 'Practise Areas', 'Legal Learning', 'Blog', 'Contact'];
+
+  const navItems = [
+    'Home',
+    'About',
+    'Courses',
+    'Schedule',
+    'Testimonials',
+    'Gallery',
+    'FAQs',
+    'Contact',
+  ];
+
+  const linkColour = scrolled ? 'text-[#2B526E]' : 'text-white';
 
   return (
     <>
-      {/* ───────────────────────────── Overlay ───────────────────────────── */}
+      {/* ─────────── Overlay ─────────── */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/0"   // transparent blocker behind header
+          className="fixed inset-0 z-40 bg-black/0"
           onClick={() => setIsOpen(false)}
         />
       )}
 
-      {/* ───────────────────────────── Header ───────────────────────────── */}
+      {/* ─────────── Header ─────────── */}
       <header
-        className={`fixed w-full z-50 top-0 transition-all duration-300 font-mont ${
-          scrolled ? 'bg-white shadow-lg py-2' : 'bg-transparent py-4'
+        className={`fixed top-0 z-50 w-full font-mont transition-all duration-300 ${
+          scrolled ? 'bg-white py-2 shadow-lg' : 'bg-transparent py-4'
         }`}
       >
-        <div className="container mx-auto px-4 flex justify-between items-center">
+        <div className="container mx-auto flex items-center justify-between px-4">
           {/* Logo */}
           <a href="/" className="flex items-center">
             <h1
-              className={`text-[20px] ${scrolled ? 'text-deepRoyal' : 'text-white'} mr-2`}
-              style={{ fontWeight: '700' }}
+              className={`text-[22px] font-bold ${linkColour}`}
+              style={{ letterSpacing: '1px' }}
             >
-              ALF
+              EduConnect
             </h1>
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex space-x-8 items-center">
+          <nav className="hidden items-center space-x-8 md:flex">
             {navItems.map((item) => (
               <NavLink
                 key={item}
-                to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
+                to={item === 'Home' ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`}
                 className={({ isActive }) =>
-                  `text-sm uppercase tracking-wider transition-colors font-mont ${
+                  `text-sm uppercase tracking-wider transition-colors ${
                     isActive
-                      ? `${scrolled ? 'text-deepRoyal' : 'text-white'} font-bold`
-                      : `${scrolled ? 'text-deepRoyal' : 'text-white'} hover:text-blue-500`
+                      ? `${linkColour} font-semibold`
+                      : `${linkColour} hover:text-[#EC9706]`
                   }`
                 }
               >
                 {item}
               </NavLink>
             ))}
+
+            {/* CTA */}
+            <NavLink
+              to="/enroll"
+              className="ml-4 rounded-md bg-[#EC9706] px-5 py-2 text-sm font-semibold text-white transition-colors hover:brightness-110"
+            >
+              Enroll
+            </NavLink>
+
+            {/* Call */}
             <a
               href="tel:+919729079252"
-              className={`ml-4 flex gap-1 px-4 py-2 text-sm rounded-md border transition-colors ${
+              className={`ml-4 flex items-center gap-1 rounded-md border px-4 py-2 text-sm transition-colors ${
                 scrolled
-                  ? 'text-deepRoyal border-deepRoyal hover:text-blue-500 hover:border-blue-500'
-                  : 'text-white border-white hover:text-blue-500 hover:border-blue-500'
+                  ? 'border-[#2B526E] text-[#2B526E] hover:border-[#EC9706] hover:text-[#EC9706]'
+                  : 'border-white text-white hover:border-[#EC9706] hover:text-[#EC9706]'
               }`}
             >
               <Phone size={18} /> Call
@@ -64,19 +86,21 @@ function Navbar({ scrolled }) {
           </nav>
 
           {/* Mobile buttons */}
-          <div className="md:hidden flex items-center gap-3">
+          <div className="flex items-center gap-3 md:hidden">
+            {/* Call small */}
             <a
               href="tel:+919729079252"
-              className={`flex items-center gap-2 px-3 py-2 rounded-[15px] shadow-md transition-colors duration-200 ${
+              className={`rounded-[15px] px-3 py-2 shadow-md transition-colors duration-200 ${
                 scrolled
-                  ? 'bg-white text-deepRoyal hover:bg-blue-500 hover:text-white'
-                  : 'bg-transparent text-white hover:bg-blue-500 hover:text-white'
+                  ? 'bg-white text-[#2B526E] hover:bg-[#EC9706] hover:text-white'
+                  : 'bg-transparent text-white hover:bg-[#EC9706] hover:text-white'
               }`}
             >
-              <Phone size={18} /> HA
+              <Phone size={18} />
             </a>
+            {/* Menu toggle */}
             <button
-              className={`${scrolled ? 'text-deepRoyal' : 'text-white'} hover:text-blue-500 focus:outline-none`}
+              className={`${linkColour} hover:text-[#EC9706] focus:outline-none`}
               onClick={() => setIsOpen((prev) => !prev)}
               aria-label="Toggle menu"
             >
@@ -87,8 +111,8 @@ function Navbar({ scrolled }) {
 
         {/* Mobile nav menu */}
         <div
-          className={`md:hidden bg-primary transition-all duration-300 ease-in-out overflow-hidden ${
-            isOpen ? 'max-h-screen py-4' : 'max-h-0'
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isOpen ? 'max-h-screen py-4 bg-[#2B526E]' : 'max-h-0'
           }`}
         >
           <div className="container mx-auto px-4">
@@ -96,10 +120,12 @@ function Navbar({ scrolled }) {
               {navItems.map((item) => (
                 <NavLink
                   key={item}
-                  to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
+                  to={item === 'Home' ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`}
                   className={({ isActive }) =>
-                    `text-sm uppercase tracking-wider py-2 transition-colors font-mont ${
-                      isActive ? 'text-white font-bold' : 'text-white hover:text-blue-500'
+                    `py-2 text-sm uppercase tracking-wider transition-colors ${
+                      isActive
+                        ? 'text-white font-semibold'
+                        : 'text-white hover:text-[#EC9706]'
                     }`
                   }
                   onClick={() => setIsOpen(false)}
@@ -107,6 +133,14 @@ function Navbar({ scrolled }) {
                   {item}
                 </NavLink>
               ))}
+              {/* CTA for mobile */}
+              <NavLink
+                to="/enroll"
+                className="rounded-md bg-[#EC9706] px-4 py-2 text-center text-sm font-semibold text-white transition-colors hover:brightness-110"
+                onClick={() => setIsOpen(false)}
+              >
+                Enroll
+              </NavLink>
             </div>
           </div>
         </div>
@@ -117,7 +151,7 @@ function Navbar({ scrolled }) {
         href="https://wa.me/+919729079252"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition-colors duration-200 flex items-center justify-center"
+        className="fixed bottom-6 right-6 z-50 flex items-center justify-center rounded-full bg-green-500 p-3 text-white shadow-lg transition-colors duration-200 hover:bg-green-600"
         aria-label="Contact us on WhatsApp"
       >
         <IoLogoWhatsapp size={28} />
