@@ -1,0 +1,154 @@
+/* Custom Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-mont text-gray-800 antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-work;
+  }
+}
+
+@layer components {
+  .animate-fade-in {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .animate-fade-in-delay {
+    animation: fadeIn 1s ease-in-out 0.3s forwards;
+    opacity: 0;
+  }
+  
+  .animate-fade-in-delay-2 {
+    animation: fadeIn 1s ease-in-out 0.6s forwards;
+    opacity: 0;
+  }
+}
+
+@layer utilities {
+  
+  .font-serif {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .font-sans {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .font-work{
+    font-family: "Work Sans", 'sans-serif';
+  }
+  
+  .bg-navy-900 {
+    background-color: #0F172A;
+  }
+  
+  .bg-navy-800 {
+    background-color: #1E293B;
+  }
+  
+  .text-navy-900 {
+    color: #0F172A;
+  }
+  
+  .bg-gold-500 {
+    background-color: #C4A484;
+  }
+  
+  .bg-gold-600 {
+    background-color: #B08D6A;
+  }
+  
+  .text-gold-300 {
+    color: #E2C9AD;
+  }
+  
+  .text-gold-400 {
+    color: #D5B999;
+  }
+  
+  .text-gold-500 {
+    color: #C4A484;
+  }
+  
+  .text-gold-600 {
+    color: #B08D6A;
+  }
+  
+  .text-gold-700 {
+    color: #9C7852;
+  }
+  
+  .border-gold-500 {
+    border-color: #C4A484;
+  }
+  
+  .hover\:text-gold-300:hover {
+    color: #E2C9AD;
+  }
+  
+  .hover\:text-gold-400:hover {
+    color: #D5B999;
+  }
+  
+  .hover\:text-gold-500:hover {
+    color: #C4A484;
+  }
+  
+  .hover\:bg-gold-500:hover {
+    background-color: #C4A484;
+  }
+  
+  .hover\:bg-gold-600:hover {
+    background-color: #B08D6A;
+  }
+  
+  .hover\:border-gold-500:hover {
+    border-color: #C4A484;
+  }
+
+  /* Added your custom colors */
+  .text-deep-royal {
+    color: rgb(0, 60, 140);
+  }
+  
+  .bg-deep-royal {
+    background-color: rgb(0, 60, 140);
+  }
+  
+  .border-deep-royal {
+    border-color: rgb(0, 60, 140);
+  }
+
+  /* Your custom media query */
+  @media (min-width: 932px) {
+    .custom932\:flex {
+      display: flex;
+    }
+    .custom932\:hidden {
+      display: none;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
