@@ -1,19 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Mission from '../assets/21510234301.jpg'; // Replace with your image path
 
-function Hero() {
+const Hero = () => {
   return (
     <section className="relative w-full overflow-hidden font-mont bg-black flex justify-center items-center">
       <img
-        src={Mission}
-        alt="Legal Mission"
+        src="https://images.pexels.com/photos/6326376/pexels-photo-6326376.jpeg?auto=compress&cs=tinysrgb&w=1600"
+        alt="Student learning in a library"
         className="w-full h-auto max-h-screen object-cover object-[center_20%]"
       />
 
       {/* Overlay content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-black/50 px-4">
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-black/60 px-4">
         <motion.div
           className="text-white max-w-2xl"
           initial={{ y: 50, opacity: 0 }}
@@ -26,17 +25,17 @@ function Hero() {
             animate={{ scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <span className="inline-block lg:-ml-[3in] sm:-ml-[1in]">Your Case</span><br />
-            <span className="inline-block lg:pl-[3in] sm:pl-[1in]">Our Priority</span>
+            <span className="inline-block lg:-ml-[3in] sm:-ml-[1in]">Your Learning</span><br />
+            <span className="inline-block lg:pl-[3in] sm:pl-[1in]">Our Mission</span>
           </motion.h1>
 
           <motion.p
-            className="text-base sm:text-lg md:text-xl mb-8 font-semibold"
+            className="text-base sm:text-lg md:text-xl mb-8 font-medium text-gray-200"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            {/* Empowering the voice of law through digital innovation. */}
+            Bridging learners with local educators through personalized support and quality teaching.
           </motion.p>
 
           <motion.div
@@ -47,15 +46,15 @@ function Hero() {
           >
             <Link
               to="/contact"
-              className="px-8 py-3 border-2 border-white hover:border-primary hover:text-primary text-white font-medium rounded-md transition-all"
+              className="px-8 py-3 border-2 border-white hover:border-[#EC9706] hover:text-[#EC9706] text-white font-medium rounded-md transition-all"
             >
-              Free Consultation
+              Join Now
             </Link>
           </motion.div>
         </motion.div>
       </div>
     </section>
   );
-}
+};
 
 export default Hero;

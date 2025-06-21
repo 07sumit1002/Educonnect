@@ -31,27 +31,42 @@ const FAQs = () => {
   };
 
   return (
-    <div className="pt-24 pb-16 px-4 md:px-10 font-mont bg-white min-h-screen">
-      <h1 className="text-3xl font-bold text-[#2B526E] text-center mb-10">Frequently Asked Questions</h1>
+    <div className="font-mont bg-white min-h-screen">
+      {/* Hero Image */}
+      <div className="relative h-[300px] w-full">
+        <img
+          src="https://images.pexels.com/photos/5212335/pexels-photo-5212335.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+          alt="FAQs Hero"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+          <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold">
+            Frequently Asked Questions
+          </h1>
+        </div>
+      </div>
 
-      <div className="max-w-3xl mx-auto space-y-6">
-        {faqData.map((faq, index) => (
-          <div
-            key={index}
-            className="border rounded-xl shadow-sm p-4 transition-all duration-200 hover:shadow-md"
-          >
-            <button
-              onClick={() => toggleFAQ(index)}
-              className="flex justify-between items-center w-full text-left text-[#2B526E] font-semibold text-lg"
+      {/* FAQ Section */}
+      <div className="pt-16 pb-16 px-4 md:px-10">
+        <div className="max-w-3xl mx-auto space-y-6">
+          {faqData.map((faq, index) => (
+            <div
+              key={index}
+              className="border rounded-xl shadow-sm p-4 transition-all duration-200 hover:shadow-md"
             >
-              <span>{faq.question}</span>
-              <span>{openIndex === index ? '−' : '+'}</span>
-            </button>
-            {openIndex === index && (
-              <p className="mt-3 text-gray-700 text-sm">{faq.answer}</p>
-            )}
-          </div>
-        ))}
+              <button
+                onClick={() => toggleFAQ(index)}
+                className="flex justify-between items-center w-full text-left text-[#2B526E] font-semibold text-lg"
+              >
+                <span>{faq.question}</span>
+                <span>{openIndex === index ? '−' : '+'}</span>
+              </button>
+              {openIndex === index && (
+                <p className="mt-3 text-gray-700 text-sm">{faq.answer}</p>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

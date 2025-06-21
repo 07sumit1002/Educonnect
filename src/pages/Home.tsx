@@ -1,54 +1,55 @@
 import React from 'react';
-import { ArrowRight} from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
 import Hero from '../components/Hero';
 import StatsCounter from '../components/StatsCounter';
 import FeaturedServices from '../components/FeaturedServices';
 import TestimonialSlider from '../components/TestimonialSlider';
 import WhyChooseUs from '../components/WhyChooseUs';
 import CallToAction from '../components/CallToAction';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
     <div className="font-work">
       <Hero />
 
-      <motion.section 
+      {/* Services Section */}
+      <motion.section
         className="py-8 bg-white"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 1.5, delay: 0.3 }}
-        viewport={{ once: false }}
+        viewport={{ once: true }}
       >
         <div className="container mx-auto px-4">
-          <motion.div 
+          <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 1.5, delay: 0.5 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-deeproyal">Our Practice Areas</h2>
-            <div className="w-24 h-1 bg-primary mx-auto mt-4 mb-6"></div>
-            <p className="text-deeproyal max-w-2xl mx-auto">
-              Our experienced attorneys provide expert legal representation across a wide range of practice areas.
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2B526E]">Top Categories</h2>
+            <div className="w-24 h-1 bg-[#EC9706] mx-auto mt-4 mb-6"></div>
+            <p className="text-[#2B526E] max-w-2xl mx-auto">
+              Explore popular learning domains where students meet certified tutors for personalized education.
             </p>
           </motion.div>
-          
+
           <FeaturedServices />
-          
-          <motion.div 
+
+          <motion.div
             className="text-center mt-8"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
             transition={{ duration: 1.5, delay: 0.7 }}
           >
-            <Link to="/practise areas" className="inline-flex items-center text-primary font-medium hover:text-deeproyal/80 transition-colors"
+            <Link
+              to="/categories"
+              className="inline-flex items-center text-[#EC9706] font-medium hover:text-[#2B526E]/80 transition-colors"
             >
-              View All Practice Areas
+              View All Categories
               <ArrowRight size={16} className="ml-2" />
             </Link>
           </motion.div>
@@ -56,61 +57,57 @@ const Home = () => {
       </motion.section>
 
       <StatsCounter />
-      
+
       <WhyChooseUs />
-      
-      <motion.section 
+
+      {/* Testimonials Section */}
+      <motion.section
         className="py-16 bg-white"
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -100 }}
         transition={{ duration: 1.5, delay: 0.3 }}
-        viewport={{ once: false }}
+        viewport={{ once: true }}
       >
         <div className="container mx-auto px-4">
-          <motion.div 
+          <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 1.5, delay: 0.5 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-deeproyal">What Our Clients Say</h2>
-            <div className="w-24 h-1 bg-primary mx-auto mt-4 mb-6"></div>
-            <p className="text-deeproyal max-w-2xl mx-auto">
-              We take pride in delivering exceptional legal services that exceed our clients' expectations.
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2B526E]">What Our Users Say</h2>
+            <div className="w-24 h-1 bg-[#EC9706] mx-auto mt-4 mb-6"></div>
+            <p className="text-[#2B526E] max-w-2xl mx-auto">
+              Trusted by thousands of learners and educators across India.
             </p>
-            <div className="max-w-5xl mx-auto text-center mb-12">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+
+            <div className="max-w-5xl mx-auto text-center mt-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                 {[
                   {
-                    icon: "Google Reviews",
-                    rating: "★★★★★",
-                    logo: "https://static.vecteezy.com/system/resources/previews/011/598/471/original/google-logo-icon-illustration-free-vector.jpg",
-                    link: "https://maps.app.goo.gl/CL2eh6WhNGqZuzxS8",
-                    reviewcount:'18+ reviews',
+                    icon: 'Google',
+                    rating: '★★★★★',
+                    logo: 'https://images.pexels.com/photos/1061588/pexels-photo-1061588.jpeg?auto=compress&cs=tinysrgb&w=640',
+                    link: '#',
                   },
                   {
-                    icon: "Justdial",
-                    rating: "★★★★★",
-                    logo: "https://cdn.pnggallery.com/wp-content/uploads/justdial-jd-logo-04.png",
-                    link: "https://www.justdial.com/Kurukshetra/Adv-Himanshu-Aggarwal-Near-District-Court-Kurukshetra-H-O/9999P1744-1744-220411194014-Z7M1_BZDET",
-                    reviewcount:'1+ reviews',
+                    icon: 'Trustpilot',
+                    rating: '★★★★★',
+                    logo: 'https://images.pexels.com/photos/5052880/pexels-photo-5052880.jpeg?auto=compress&cs=tinysrgb&w=640',
+                    link: '#',
                   },
                   {
-                    icon: "Pathlegal",
-                    rating: "★★★★★",
-                    logo: "https://is5-ssl.mzstatic.com/image/thumb/Purple124/v4/3c/b8/5b/3cb85b03-9438-e295-8d4f-91da664fafbc/source/512x512bb.jpg",
-                    link: "https://www.pathlegal.in/Advocate-Himanshu-Aggarwal-Kurukshetra/L000000000633267.htm",
-                    reviewcount:'1+ reviews',
+                    icon: 'Facebook',
+                    rating: '★★★★☆',
+                    logo: 'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=640',
+                    link: '#',
                   },
                   {
-                    icon: "LawRato",
-                    rating: "★★★★★",
-                    logo: "https://play-lh.googleusercontent.com/FrfTAo5rpKvRgubrkpyEtkZeI8epH6IERDroFZIrlOre-gUqHmGUgL2zmAcL4eF-kB4",
-                    link: "https://lawrato.com/advocate-himanshu-aggarwal",
-                    reviewcount:'2+ reviews',
-                  },
+                    icon: 'Justdial',
+                    rating: '★★★★★',
+                    logo: 'https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=640',
+                    link: '#',
+                  }
                 ].map((review, index) => (
                   <a
                     key={index}
@@ -119,36 +116,26 @@ const Home = () => {
                     rel="noopener noreferrer"
                     className="flex w-full max-w-sm h-20 bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300"
                   >
-                    {/* Logo Section - Left */}
-                    <div className="w-[30%] flex items-center justify-center bg-white">
+                    <div className="w-[30%] flex items-center justify-center">
                       <img
                         src={review.logo}
                         alt={review.icon}
                         className="h-full w-auto object-contain p-2"
                       />
                     </div>
-
-                    {/* Review Info Section - Right */}
                     <div className="w-[70%] flex flex-col justify-center px-4">
-                      <div className="flex justify-start space-x-1 mb-1">
-                        <p className="text-2xl text-gold-700" style={{padding:'10px'}}>{review.rating}</p>
-                      </div>
-                      {/* <div className="flex justify-start space-x-1 mb-1">
-                        <p className="text-sm text-gray-700 underline">{review.reviewcount}</p>
-                        </div> */}
+                      <p className="text-2xl text-[#EC9706]">{review.rating}</p>
                     </div>
                   </a>
-
-
                 ))}
               </div>
             </div>
           </motion.div>
-          
+
           <TestimonialSlider />
         </div>
       </motion.section>
-      
+
       <CallToAction />
     </div>
   );

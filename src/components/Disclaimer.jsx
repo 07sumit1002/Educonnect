@@ -6,13 +6,13 @@ const Disclaimer = ({ onAgree }) => {
       <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <h2 className="text-lg sm:text-xl font-bold mb-4">Disclaimer</h2>
         <p className="text-sm text-gray-700 mb-4 text-justify">
-          As per the Bar Council of India Rules and the Advocates Act, 1961, advocates cannot advertise or solicit clients. This website is intended only to share general information about Aggrawal Legal with those seeking it voluntarily.
+          EduConnect is an educational platform created solely to connect students, parents, and local educators. We do not represent any government body, institution, or certification authority.
         </p>
         <p className="text-sm text-gray-700 mb-4 text-justify">
-          The content on this site is for informational purposes only and may not be accurate, complete, or current. Aggrawal Legal is not liable for any reliance placed on this information.
+          The content on this site is intended for informational purposes only and may not always be complete, accurate, or up-to-date. EduConnect is not liable for any actions taken based on information provided here.
         </p>
         <p className="text-sm text-gray-700 mb-4 text-justify">
-          Nothing on this website should be treated as legal advice. For legal issues, please consult a qualified professional. By using this site, you agree to this disclaimer.
+          We encourage users to independently verify the qualifications, availability, and credibility of any educator listed. By continuing to use this platform, you acknowledge and agree to this disclaimer.
         </p>
 
 

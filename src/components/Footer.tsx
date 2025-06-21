@@ -1,54 +1,106 @@
+// src/components/Footer.tsx
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Scale, Phone, Mail, MapPin, Clock, Youtube, Instagram, Linkedin } from 'lucide-react';
+import {
+  BookOpenCheck,
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  Youtube,
+  Instagram,
+  Linkedin,
+} from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-deepRoyal text-white m-0">
+    <footer className="bg-[#2B526E] text-white">
       <div className="container mx-auto px-4 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {/* ───── Brand Section ───── */}
           <div>
             <div className="flex items-center mb-4">
-              <Scale className="h-8 w-8 text-blue-100 mr-2" />
-              <span className="text-xl font-serif font-bold text-white">Aggarwal Legal Firm</span>
+              <BookOpenCheck className="h-8 w-8 text-orange-400 mr-2" />
+              <span className="text-xl font-serif font-bold">EduConnect</span>
             </div>
-            <p className="text-white font-light mb-4 text-justify">
-              Committed to providing exceptional legal services with integrity and dedication.
-              We strive to achieve the best possible outcomes for our clients.
+            <p className="text-sm text-white/80 mb-4 text-justify">
+              Bridging students with quality educators nearby. We help learners
+              find the right academic support — right where they live.
             </p>
             <div className="flex space-x-4">
-              <a href="https://www.youtube.com/@KanoonKiSALAH" className="text-white hover:text-blue-500 transition-colors">
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                className="text-white hover:text-orange-300 transition-colors"
+              >
                 <Youtube size={20} />
               </a>
-              <a href="https://instagram.com/kanoon_ki_salah?igshid=YmMyMTA2M2Y=" className="text-white hover:text-blue-500 transition-colors">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                className="text-white hover:text-orange-300 transition-colors"
+              >
                 <Instagram size={20} />
               </a>
-              <a href="https://www.linkedin.com/in/himanshu-a-aggarwal-%F0%9F%87%AE%F0%9F%87%B3-51157099?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" className="text-white hover:text-blue-500 transition-colors">
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                className="text-white hover:text-orange-300 transition-colors"
+              >
                 <Linkedin size={20} />
               </a>
             </div>
           </div>
 
+          {/* ───── Course Categories ───── */}
           <div>
-            <h3 className="text-lg font-serif font-semibold mb-4 border-b border-blue-500 pb-2 text-white">Practice Areas</h3>
-            <ul className="space-y-2">
-              <li><Link to="/practise areas/matrimonial-cases" className="text-blue-200 hover:text-blue-500 transition-colors">Matrimonial Cases</Link></li>
-              <li><Link to="/practise areas/criminal-defense" className="text-blue-200 hover:text-blue-500 transition-colors">Criminal Defense</Link></li>
-              <li><Link to="/practise areas/corporate-law" className="text-blue-200 hover:text-blue-500 transition-colors">Corporate Law</Link></li>
-              <li><Link to="/practise areas/real-estate-law" className="text-blue-200 hover:text-blue-500 transition-colors">Real Estate Law</Link></li>
-              <li><Link to="/practise areas/civil-litigation" className="text-blue-200 hover:text-blue-500 transition-colors">Civil Litigation</Link></li>
+            <h3 className="text-lg font-semibold mb-4 border-b border-orange-400 pb-2">
+              Subjects Offered
+            </h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/courses/foundation" className="text-white/70 hover:text-orange-300 transition">
+                  Class 6–8 Foundation
+                </Link>
+              </li>
+              <li>
+                <Link to="/courses/science-maths" className="text-white/70 hover:text-orange-300 transition">
+                  Class 9–10 Science & Math
+                </Link>
+              </li>
+              <li>
+                <Link to="/courses/commerce" className="text-white/70 hover:text-orange-300 transition">
+                  Commerce (11–12)
+                </Link>
+              </li>
+              <li>
+                <Link to="/courses/science" className="text-white/70 hover:text-orange-300 transition">
+                  Science (11–12)
+                </Link>
+              </li>
+              <li>
+                <Link to="/courses/competitive-exams" className="text-white/70 hover:text-orange-300 transition">
+                  Competitive Prep
+                </Link>
+              </li>
             </ul>
-
           </div>
 
+          {/* ───── Quick Links ───── */}
           <div>
-            <h3 className="text-lg font-serif font-semibold mb-4 border-b border-blue-500 pb-2 text-white">Quick Links</h3>
-            <ul className="space-y-2">
-              {['Home', 'About', 'Practise Areas','Terms and Condition','Privacy Policy', 'Blog', 'Contact'].map((item) => (
+            <h3 className="text-lg font-semibold mb-4 border-b border-orange-400 pb-2">
+              Quick Links
+            </h3>
+            <ul className="space-y-2 text-sm">
+              {['Home', 'About', 'Courses', 'Contact', 'Terms', 'Privacy'].map((item) => (
                 <li key={item}>
                   <NavLink
-                    to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-                    className="text-blue-200 hover:text-blue-500 transition-colors"
+                    to={
+                      item === 'Home'
+                        ? '/'
+                        : `/${item.toLowerCase().replace(/\s+/g, '-')}`
+                    }
+                    className="text-white/70 hover:text-orange-300 transition"
                   >
                     {item}
                   </NavLink>
@@ -57,36 +109,39 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* ───── Contact Info ───── */}
           <div>
-            <h3 className="text-lg font-serif font-semibold mb-4 border-b border-blue-500 pb-2 text-white">Contact Info</h3>
-            <ul className="space-y-4">
+            <h3 className="text-lg font-semibold mb-4 border-b border-orange-400 pb-2">
+              Contact Us
+            </h3>
+            <ul className="space-y-4 text-sm text-white/80">
               <li className="flex items-start">
-                <MapPin className="h-5 w-5 text-blue-500 mr-2 mt-0.5" />
-                <span className="text-blue-200">Chamber no. 246, District Court, kurukshetra</span>
+                <MapPin className="h-5 w-5 text-orange-400 mr-2 mt-0.5" />
+                <span>2nd Floor, ABC Plaza, Hazratganj, Lucknow</span>
               </li>
               <li className="flex items-center">
-                <Phone className="h-5 w-5 text-blue-500 mr-2" />
-                <a href="tel:+919729079252" className="text-blue-200 hover:text-blue-500 transition-colors">
-                  +91 97290 79252
+                <Phone className="h-5 w-5 text-orange-400 mr-2" />
+                <a href="tel:+919123456789" className="hover:text-orange-300 transition">
+                  +91 91234 56789
                 </a>
               </li>
               <li className="flex items-center">
-                <Mail className="h-5 w-5 text-blue-500 mr-2" />
-                <a href="mailto:aggarwalhimanshu8@gmail.com" className="text-blue-200 hover:text-blue-500 transition-colors">
-                  aggarwalhimanshu8@gmail.com
+                <Mail className="h-5 w-5 text-orange-400 mr-2" />
+                <a href="mailto:info@educonnect.in" className="hover:text-orange-300 transition">
+                  info@educonnect.in
                 </a>
               </li>
-
               <li className="flex items-start">
-                <Clock className="h-5 w-5 text-blue-500 mr-2 mt-0.5" />
-                <span className="text-blue-200">Monday - Friday: 9:00 AM - 6:00 PM</span>
+                <Clock className="h-5 w-5 text-orange-400 mr-2 mt-0.5" />
+                <span>Mon–Sat: 9:00 AM – 7:00 PM</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-blue-700 mt-12 pt-8 text-center text-blue-300">
-          <p>© {new Date().getFullYear()} Aggarwal Legal Firm. All Rights Reserved.</p>
+        {/* ───── Bottom Bar ───── */}
+        <div className="mt-12 border-t border-white/20 pt-6 text-center text-sm text-white/60">
+          <p>© {new Date().getFullYear()} EduConnect. All rights reserved.</p>
         </div>
       </div>
     </footer>
