@@ -4,55 +4,65 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
-    <section className="relative w-full overflow-hidden font-mont bg-black flex justify-center items-center">
+    <section className="relative flex items-center justify-center overflow-hidden font-mont bg-black min-h-[70vh]">
+      {/* Hero image */}
       <img
         src="https://images.pexels.com/photos/6326376/pexels-photo-6326376.jpeg?auto=compress&cs=tinysrgb&w=1600"
         alt="Student learning in a library"
-        className="w-full h-auto max-h-screen object-cover object-[center_20%]"
+        className="absolute inset-0 h-full w-full object-cover object-[center_20%]"
       />
 
-      {/* Overlay content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-black/60 px-4">
-        <motion.div
-          className="text-white max-w-2xl"
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1.2, ease: 'easeOut', delay: 0.3 }}
+      {/* gradient overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
+
+      {/* Content */}
+      <motion.div
+        className="relative z-10 flex max-w-2xl flex-col items-center px-4 text-center text-white"
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1.2, ease: 'easeOut', delay: 0.3 }}
+      >
+        {/* Heading */}
+        <motion.h1
+          className="mb-6 font-bold leading-tight"
+          style={{ fontSize: 'clamp(1.9rem, 5vw + 1rem, 3.75rem)' }}
+          initial={{ scale: 0.95 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-relaxed mb-6"
-            initial={{ scale: 0.95 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <span className="inline-block lg:-ml-[3in] sm:-ml-[1in]">Your Learning</span><br />
-            <span className="inline-block lg:pl-[3in] sm:pl-[1in]">Our Mission</span>
-          </motion.h1>
+          Your Learning
+          {/* line break only on md and above */}
+          <span className="hidden md:inline"><br /></span>{' '}
+          Our Mission
+        </motion.h1>
 
-          <motion.p
-            className="text-base sm:text-lg md:text-xl mb-8 font-medium text-gray-200"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            Bridging learners with local educators through personalized support and quality teaching.
-          </motion.p>
+        {/* Sub-heading */}
+        <motion.p
+          className="mb-8 text-slate-200"
+          style={{ fontSize: 'clamp(0.9rem, 2vw + 0.5rem, 1.25rem)' }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          Bridging learners with local educators through personalised support
+          and quality teaching.
+        </motion.p>
 
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+        {/* CTA */}
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          <Link
+            to="/contact"
+            className="rounded-md border-2 border-white px-8 py-3 text-sm font-semibold transition hover:border-[#EC9706] hover:text-[#EC9706]"
           >
-            <Link
-              to="/contact"
-              className="px-8 py-3 border-2 border-white hover:border-[#EC9706] hover:text-[#EC9706] text-white font-medium rounded-md transition-all"
-            >
-              Join Now
-            </Link>
-          </motion.div>
+            Join Now
+          </Link>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };
